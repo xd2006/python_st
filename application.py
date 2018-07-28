@@ -6,15 +6,15 @@ from selenium.webdriver.support.ui import Select
 class Application:
 
     def __init__(self):
-        self.wd = WebDriver(capabilities={"marionette": True},
-                            firefox_binary="C:/Program Files (x86)/Mozilla Firefox/firefox.exe")
+        self.wd = WebDriver(capabilities={"marionette": False},
+                             firefox_binary="C:/Program Files (x86)/Mozilla Firefox ESR/firefox.exe")
         self.wd.implicitly_wait(60)
 
     def open_home_page(self):
             wd = self.wd
             wd.get("http://localhost/addressbook/")
 
-    def login(self, username, password):
+    def logon(self, username, password):
             wd = self.wd
             self.open_home_page()
             wd.find_element_by_name("user").click()
