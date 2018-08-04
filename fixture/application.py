@@ -2,6 +2,7 @@ from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.support.ui import Select
 
 from fixture.contact import ContactHelper
+from fixture.general import GeneralHelper
 from fixture.group import GroupHelper
 from fixture.session import SessionHelper
 
@@ -15,6 +16,7 @@ class Application:
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
+        self.general = GeneralHelper(self)
 
     def open_home_page(self):
         wd = self.wd

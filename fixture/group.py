@@ -34,16 +34,10 @@ class GroupHelper:
     def fill_group_form(self, group):
         # fill groups form
         wd = self.app.wd
-        self.populate_by_name("group_name", group.name)
-        self.populate_by_name("group_header", group.name)
-        self.populate_by_name("group_footer", group.name)
+        self.app.general.populate_by_name("group_name", group.name)
+        self.app.general.populate_by_name("group_header", group.name)
+        self.app.general.populate_by_name("group_footer", group.name)
 
-    def populate_by_name(self, name, text):
-        if text is not None:
-            wd = self.app.wd
-            wd.find_element_by_name(name).click()
-            wd.find_element_by_name(name).clear()
-            wd.find_element_by_name(name).send_keys(text)
 
     def open_groups_page(self):
         wd = self.app.wd
