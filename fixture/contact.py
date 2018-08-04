@@ -35,6 +35,7 @@ class ContactHelper:
 
     def edit_first_contact(self, contact):
         wd = self.app.wd
+        self.return_to_homepage()
         # Init edit process contact
         wd.find_element_by_xpath("//a[./img[@title='Edit']]").click()
         self.populate_contact_data(contact)
@@ -46,6 +47,7 @@ class ContactHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
+        self.return_to_homepage()
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_css_selector("input[value='Delete']").click()
         # submit deletion
