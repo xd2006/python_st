@@ -4,13 +4,14 @@ class ContactHelper:
 
     def add(self, contact):
         wd = self.app.wd
+        self.navigate_to_homepage()
         # Init creation process
         wd.find_element_by_link_text("add new").click()
         self.populate_contact_data(contact)
         #Submit creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[@name='submit']").click()
         # Return to home page
-        self.return_to_homepage()
+        self.navigate_to_homepage()
 
     def populate_contact_data(self, contact):
         wd = self.app.wd
@@ -35,30 +36,31 @@ class ContactHelper:
 
     def edit_first_contact(self, contact):
         wd = self.app.wd
-        self.return_to_homepage()
+        self.navigate_to_homepage()
         # Init edit process contact
         wd.find_element_by_xpath("//a[./img[@title='Edit']]").click()
         self.populate_contact_data(contact)
         # Submit creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[@value='Update']").click()
         # Return to home page
-        self.return_to_homepage()
+        self.navigate_to_homepage()
 
 
     def delete_first_contact(self):
         wd = self.app.wd
-        self.return_to_homepage()
+        self.navigate_to_homepage()
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_css_selector("input[value='Delete']").click()
         # submit deletion
         wd.switch_to_alert().accept()
-        self.return_to_homepage()
+        self.navigate_to_homepage()
 
-    def return_to_homepage(self):
+    def navigate_to_homepage(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
+        if not(wd.current_url.endswith("addressbook/") and len(wd.find_elements_by_name("add")) > 0):
+            wd.find_element_by_link_text("home").click()
 
     def contact_count(self):
         wd = self.app.wd
-        self.return_to_homepage()
+        self.navigate_to_homepage()
         return len(wd.find_elements_by_name("selected[]"))
