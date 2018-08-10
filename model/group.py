@@ -4,6 +4,10 @@ from sys import maxsize
 class Group:
 
     def __init__(self, name=None, header=None, footer=None, id=None):
+        """
+
+        :rtype: object
+        """
         self.name = name
         self.header = header
         self.footer = footer
