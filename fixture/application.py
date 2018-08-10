@@ -1,5 +1,4 @@
 from selenium.webdriver.firefox.webdriver import WebDriver
-from selenium.webdriver.support.ui import Select
 
 from fixture.contact import ContactHelper
 from fixture.general import GeneralHelper
