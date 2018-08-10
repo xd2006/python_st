@@ -9,10 +9,14 @@ def test_edit_contact(app):
                     phone="+37529000000", email="somemail@mail.com", homepage="testhomepage.com",
                     day_of_birth="10", month_of_birth="September", year_of_birth="1980"))
     old_contacts = app.contact.get_contact_list()
-    app.contact.edit_first_contact(
-        Contact(first_name="TestName_ed", middle_name="testMiddle_ed", last_name="LastTest_ed", nickname="NickTest_ed",
+    contact = Contact(first_name="TestName_ed", middle_name="testMiddle_ed", last_name="LastTest_ed", nickname="NickTest_ed",
                 title="Title_ed", company="Company_ed", address="Some Address edited",
                 phone="+37529000111", email="somemail-ed@mail.com", homepage="testhomepage_ed.com",
-                day_of_birth="11", month_of_birth="October", year_of_birth="1985"))
+                day_of_birth="11", month_of_birth="October", year_of_birth="1985")
+    app.contact.edit_first_contact(contact)
+    contact.id = old_contacts[0].id
     new_contacts = app.contact.get_contact_list()
     assert len(old_contacts) == len(new_contacts)
+    old_contacts[0] = contact
+    assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
+
