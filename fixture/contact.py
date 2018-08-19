@@ -39,9 +39,7 @@ class ContactHelper:
 
     def edit_contact_by_index(self, contact, index):
         wd = self.app.wd
-        self.navigate_to_homepage()
-        # Init edit process contact
-        wd.find_elements_by_xpath("//a[./img[@title='Edit']]")[index].click()
+        self.open_contact_to_edit_by_index(index)
         self.populate_contact_data(contact)
         # Submit creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[@value='Update']").click()
@@ -49,6 +47,15 @@ class ContactHelper:
         self.navigate_to_homepage()
         self.contact_cache = None
 
+    def open_contact_to_edit_by_index(self, index):
+        wd = self.app.wd
+        self.navigate_to_homepage()
+        wd.find_elements_by_xpath("//a[./img[@title='Edit']]")[index].click()
+
+    def open_contact_view_by_index(self, index):
+        wd = self.app.wd
+        self.navigate_to_homepage()
+        wd.find_elements_by_xpath("//a[./img[@title='Details']]")[index].click()
 
     def delete_contact_by_index(self, index):
         wd = self.app.wd
@@ -81,5 +88,23 @@ class ContactHelper:
                 id = cells[0].find_element_by_name("selected[]").get_attribute("id")
                 first_name = cells[2].text
                 last_name = cells[1].text
-                self.contact_cache.append(Contact(first_name=first_name, last_name=last_name, id=id))
+                all_phones = cells[5].text.splitlines()
+                homephone = all_phones[0] if len(all_phones)>=1 else None
+                mobilephone = all_phones[1] if len(all_phones)>=2 else None
+                workphone = all_phones[2] if len(all_phones)>=3 else None
+                self.contact_cache.append(Contact(first_name=first_name, last_name=last_name, id=id, homephone=homephone, mobilephone=mobilephone,
+                                                  workphone=workphone))
         return list(self.contact_cache)
+
+    def get_contact_info_from_edit_page(self, index) -> Contact:
+        wd = self.app.wd
+        self.open_contact_to_edit_by_index(index)
+        firstname = wd.find_element_by_name("firstname").get_attribute("value")
+        lastname = wd.find_element_by_name("lastname").get_attribute("value")
+        id = wd.find_element_by_name("id").get_attribute("value")
+        homephone = wd.find_element_by_name("home").get_attribute("value")
+        workphone = wd.find_element_by_name("work").get_attribute("value")
+        mobilephone = wd.find_element_by_name("mobile").get_attribute("value")
+        secondaryphone = wd.find_element_by_name("phone2").get_attribute("value")
+        return Contact(first_name=firstname, last_name=lastname, id=id, homephone=homephone, mobilephone=mobilephone, workphone=workphone, secondaryphone=secondaryphone   )
+

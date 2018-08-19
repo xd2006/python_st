@@ -7,6 +7,10 @@ from fixture.session import SessionHelper
 
 
 class Application:
+    wd: WebDriver
+    general: GeneralHelper
+    group: GroupHelper
+    contact: ContactHelper
 
     def __init__(self):
         self.wd = WebDriver(capabilities={"marionette": False},
@@ -26,7 +30,7 @@ class Application:
 
     def is_valid(self):
         try:
-            self.wd.current_url
+            self.wd.current_url()
             return True
         except:
             return False

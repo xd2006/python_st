@@ -1,10 +1,9 @@
 from selenium.webdriver.support.select import Select
 
-
 class GeneralHelper:
 
     def __init__(self, app):
-        self.app = app
+          self.app = app
 
     def populate_by_name(self, name, text):
         if text is not None:
