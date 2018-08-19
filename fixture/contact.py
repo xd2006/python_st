@@ -1,9 +1,10 @@
+from fixture.application import Application
 from model.contact import Contact
 import re
 
 
 class ContactHelper:
-    def __init__(self, app):
+    def __init__(self, app: Application):
         self.app = app
 
     def add(self, contact):
