@@ -3,7 +3,8 @@ from selenium.webdriver.support.select import Select
 class GeneralHelper:
 
     def __init__(self, app):
-          self.app = app
+        from fixture.application import Application
+        self.app: Application = app
 
     def populate_by_name(self, name, text):
         if text is not None:

@@ -1,11 +1,13 @@
-from fixture.application import Application
+
 from model.contact import Contact
 import re
 
-
 class ContactHelper:
-    def __init__(self, app: Application):
-        self.app = app
+
+
+    def __init__(self, app):
+        from fixture.application import Application
+        self.app: Application = app
 
     def add(self, contact):
         wd = self.app.wd
@@ -13,12 +15,11 @@ class ContactHelper:
         # Init creation process
         wd.find_element_by_link_text("add new").click()
         self.populate_contact_data(contact)
-        #Submit creation
+        # Submit creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[@name='submit']").click()
         # Return to home page
         self.navigate_to_homepage()
         self.contact_cache = None
-
 
     def populate_contact_data(self, contact):
         wd = self.app.wd
@@ -37,7 +38,6 @@ class ContactHelper:
         self.app.general.select_by_xpath("//div[@id='content']/form/select[@name='bmonth']", contact.month_of_birth)
 
         self.app.general.populate_by_name("byear", contact.year_of_birth)
-
 
     def edit_contact_by_index(self, contact, index):
         wd = self.app.wd
@@ -71,7 +71,7 @@ class ContactHelper:
 
     def navigate_to_homepage(self):
         wd = self.app.wd
-        if not(wd.current_url.endswith("addressbook/") and len(wd.find_elements_by_name("add")) > 0):
+        if not (wd.current_url.endswith("addressbook/") and len(wd.find_elements_by_name("add")) > 0):
             wd.find_element_by_link_text("home").click()
 
     def contact_count(self):
@@ -90,12 +90,9 @@ class ContactHelper:
                 id = cells[0].find_element_by_name("selected[]").get_attribute("id")
                 first_name = cells[2].text
                 last_name = cells[1].text
-                all_phones = cells[5].text.splitlines()
-                homephone = all_phones[0] if len(all_phones)>=1 else None
-                mobilephone = all_phones[1] if len(all_phones)>=2 else None
-                workphone = all_phones[2] if len(all_phones)>=3 else None
-                self.contact_cache.append(Contact(first_name=first_name, last_name=last_name, id=id, homephone=homephone, mobilephone=mobilephone,
-                                                  workphone=workphone))
+                all_phones = cells[5].text
+                self.contact_cache.append(Contact(first_name=first_name, last_name=last_name, id=id,
+                                                  all_phones_from_home_page=all_phones))
         return list(self.contact_cache)
 
     def get_contact_info_from_edit_page(self, index) -> Contact:
@@ -121,6 +118,3 @@ class ContactHelper:
         secondaryphone = re.search("F: (.*)", text).group(1)
         return Contact(homephone=homephone,
                        mobilephone=mobilephone, workphone=workphone, secondaryphone=secondaryphone)
-
-
-

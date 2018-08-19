@@ -5,7 +5,8 @@ from model.group import Group
 
 class GroupHelper:
     def __init__(self, app):
-        self.app = app
+        from fixture.application import Application
+        self.app: Application = app
 
     def return_to_groups_page(self):
         wd = self.app.wd
