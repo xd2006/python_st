@@ -43,8 +43,8 @@ class GroupHelper:
         # fill groups form
         wd = self.app.wd
         self.app.general.populate_by_name("group_name", group.name)
-        self.app.general.populate_by_name("group_header", group.name)
-        self.app.general.populate_by_name("group_footer", group.name)
+        self.app.general.populate_by_name("group_header", group.header)
+        self.app.general.populate_by_name("group_footer", group.footer)
 
     def open_groups_page(self):
         wd = self.app.wd
