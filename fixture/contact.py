@@ -31,7 +31,7 @@ class ContactHelper:
         self.app.general.populate_by_name("address", contact.address)
         self.app.general.populate_by_name("home", contact.homephone)
         self.app.general.populate_by_name("mobile", contact.mobilephone)
-        self.app.general.populate_by_name("work", contact.mobilephone)
+        self.app.general.populate_by_name("work", contact.workphone)
         self.app.general.populate_by_name("email", contact.email)
         self.app.general.populate_by_name("email2", contact.email2)
         self.app.general.populate_by_name("email3", contact.email3)
