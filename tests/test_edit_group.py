@@ -9,11 +9,12 @@ def test_edit_group(app, db, check_ui):
         app.group.create(Group(name="testname", header="testheader", footer="testfooter"))
     old_groups = db.get_group_list()
     group = Group(name="testname_edited", header="testheader_edited", footer="testfooter_edited")
-    index = randrange(len(old_groups))
-    group.id = old_groups[index].id
+    group_to_edit = random.choice(old_groups)
+    group.id = group_to_edit.id
     app.group.edit_group_by_id(group, group.id)
     new_groups = db.get_group_list()
-    old_groups[index] = group
+    old_groups.remove(group_to_edit)
+    old_groups.append(group)
     assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
     if check_ui:
         new_groups = map(clean, new_groups)
@@ -25,11 +26,12 @@ def test_edit_group_name(app, db, check_ui):
         app.group.create(Group(name="testname", header="testheader", footer="testfooter"))
     old_groups = db.get_group_list()
     group = Group(name="testname_edited_only")
-    index = randrange(len(old_groups))
-    group.id = old_groups[index].id
+    group_to_edit = random.choice(old_groups)
+    group.id = group_to_edit.id
     app.group.edit_group_by_id(group, group.id)
     new_groups = db.get_group_list()
-    old_groups[index] = group
+    old_groups.remove(group_to_edit)
+    old_groups.append(group)
     assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
     if check_ui:
         new_groups = map(clean, new_groups)
