@@ -1,6 +1,6 @@
-
 from model.contact import Contact
 import re
+
 
 class ContactHelper:
 
@@ -97,7 +97,8 @@ class ContactHelper:
                 all_emails = cells[4].text
                 all_phones = cells[5].text
                 self.contact_cache.append(Contact(first_name=first_name, last_name=last_name, id=id,
-                                                  all_phones_from_home_page=all_phones, all_emails_from_home_page=all_emails,
+                                                  all_phones_from_home_page=all_phones,
+                                                  all_emails_from_home_page=all_emails,
                                                   address=address))
         return list(self.contact_cache)
 
