@@ -97,6 +97,14 @@ class ContactHelper:
         self.navigate_to_homepage()
         self.contact_cache = None
 
+    def remove_contact_from_group(self, contact, group):
+        wd = self.app.wd
+        self.navigate_to_homepage()
+        self.app.general.select_by_xpath("//select[@name='group']", group.id)
+        self.select_contact_by_id(contact.id)
+        wd.find_element_by_xpath("//input[@name='remove']").click()
+
+
     def select_contact_by_id(self, id):
         wd = self.app.wd
         wd.find_element_by_css_selector("input[value='%s']" % id).click()
@@ -167,3 +175,6 @@ class ContactHelper:
         secondaryphone = re.search("F: (.*)", text).group(1)
         return Contact(homephone=homephone,
                        mobilephone=mobilephone, workphone=workphone, secondaryphone=secondaryphone)
+
+
+
