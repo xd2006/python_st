@@ -90,12 +90,24 @@ class ContactHelper:
     def delete_contact_by_id(self, id):
         wd = self.app.wd
         self.navigate_to_homepage()
-        wd.find_element_by_css_selector("input[value='%s']" % id).click()
+        self.select_contact_by_id(id)
         wd.find_element_by_css_selector("input[value='Delete']").click()
         # submit deletion
         wd.switch_to_alert().accept()
         self.navigate_to_homepage()
         self.contact_cache = None
+
+    def select_contact_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("input[value='%s']" % id).click()
+
+    def add_contact_to_group(self, contact, group):
+        wd = self.app.wd
+        self.navigate_to_homepage()
+        self.select_contact_by_id(contact.id)
+        self.app.general.select_by_xpath("//select[@name='to_group']", group.id)
+        wd.find_element_by_xpath("//input[@name='add']").click()
+
 
     def navigate_to_homepage(self):
         wd = self.app.wd
