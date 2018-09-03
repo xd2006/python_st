@@ -4,6 +4,27 @@ from fixture.application import Application
 from model.contact import Contact
 import re
 
+def test_contact_data_on_home_page_and_database(app: Application, orm):
+    if len(orm.get_contact_list()) == 0:
+        app.contact.add(
+            Contact(first_name="TestName", middle_name="testMiddle", last_name="LastTest", nickname="NickTest",
+                    title="Title", company="Company", address="Some Address",
+                    homephone="+37529000000", mobilephone="+375(29)000001", workphone="+375(29)100-002",
+                    email="somemail@mail.com",
+                    email2="somemail2@mail.com", email3="somemail3@mail.com", homepage="testhomepage.com",
+                    day_of_birth="10", month_of_birth="September", year_of_birth="1980"))
+    contacts_ui = app.contact.get_contact_list()
+    contacts_db = orm.get_contact_list()
+    assert sorted(contacts_ui, key = Contact.id_or_max) == sorted(contacts_db, key = Contact.id_or_max)
+
+    for contact_ui in contacts_ui:
+        contact_db = list(filter(lambda x: x.id == contact_ui.id, contacts_db))[0]
+        assert contact_ui.address == clear_address(contact_db.address)
+        assert contact_ui.all_phones_from_home_page == merge_phones_like_on_home_page(
+        contact_db)
+        assert contact_ui.all_emails_from_home_page == merge_emails_like_on_home_page(
+        contact_db)
+
 
 def test_contact_data_on_home_and_edit_page(app: Application):
     if app.contact.contact_count() == 0:
@@ -41,6 +62,9 @@ def test_phones_on_contact_view_page(app: Application):
     assert contact_from_view_page.workphone == contact_from_edit_page.workphone
     assert contact_from_view_page.mobilephone == contact_from_edit_page.mobilephone
 
+
+def clear_address(s):
+    return re.sub("\\r", "", s)
 
 def clear(s):
     return re.sub("([^\w^+])", "", s)
