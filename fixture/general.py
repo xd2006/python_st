@@ -16,5 +16,5 @@ class GeneralHelper:
     def select_by_xpath(self, xpath, text):
         if text is not None:
             wd = self.app.wd
-            selectBday = Select(wd.find_element_by_xpath(xpath))
-            selectBday.select_by_value(text)
+            select_element = Select(wd.find_element_by_xpath(xpath))
+            select_element.select_by_value(text)
