@@ -1,0 +1,93 @@
+{
+  "time" : {
+    "start" : 1537567506901,
+    "stop" : 1537567530715,
+    "duration" : 23814
+  },
+  "testSuites" : [ {
+    "uid" : "8056bfa3731a2470",
+    "name" : "tests.test_add_group",
+    "title" : "Test add group",
+    "time" : {
+      "start" : 1537567506901,
+      "stop" : 1537567530715,
+      "duration" : 23814
+    },
+    "statistic" : {
+      "total" : 6,
+      "passed" : 6,
+      "pending" : 0,
+      "canceled" : 0,
+      "failed" : 0,
+      "broken" : 0
+    },
+    "description" : null,
+    "testCases" : [ {
+      "uid" : "d91d568879ee2a57",
+      "name" : "test_add_group[None: name1; header1; footer1]",
+      "title" : "Test add group [None: name1; header1; footer1]",
+      "time" : {
+        "start" : 1537567506901,
+        "stop" : 1537567515640,
+        "duration" : 8739
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "a84c79a4caca2d4b",
+      "name" : "test_add_group[None: name2; header2; footer2]",
+      "title" : "Test add group [None: name2; header2; footer2]",
+      "time" : {
+        "start" : 1537567515642,
+        "stop" : 1537567518593,
+        "duration" : 2951
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "3234c414c1f9566d",
+      "name" : "test_add_group_v[None: ; ; ]",
+      "title" : "Test add group v [None: ; ; ]",
+      "time" : {
+        "start" : 1537567518594,
+        "stop" : 1537567521530,
+        "duration" : 2936
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "17eaa1fa07b3e6a6",
+      "name" : "test_add_group_v[None: testnameBPkP Se; testheadergPFJWR11KN; testfooterC 5tu 2XSsZ3r]",
+      "title" : "Test add group v [None: testnameBPkP Se; testheadergPFJWR11KN; testfooterC 5tu 2XSsZ3r]",
+      "time" : {
+        "start" : 1537567521531,
+        "stop" : 1537567524555,
+        "duration" : 3024
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "fc2472657bfae22b",
+      "name" : "test_add_group_v[None: testnamexkW; testheaderFR CRs; testfooterJNi R R U3Rl PeND1]",
+      "title" : "Test add group v [None: testnamexkW; testheaderFR CRs; testfooterJNi R R U3Rl PeND1]",
+      "time" : {
+        "start" : 1537567524557,
+        "stop" : 1537567527659,
+        "duration" : 3102
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "e1b553fa87d0b521",
+      "name" : "test_add_group_v[None: testnameY0IcVZ; testheaderT47Y ZKzY53 UEgz; testfooterYwk7Vsid]",
+      "title" : "Test add group v [None: testnameY0IcVZ; testheaderT47Y ZKzY53 UEgz; testfooterYwk7Vsid]",
+      "time" : {
+        "start" : 1537567527660,
+        "stop" : 1537567530715,
+        "duration" : 3055
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    } ]
+  } ]
+}

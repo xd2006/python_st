@@ -1,0 +1,95 @@
+{
+  "uid" : "e1b553fa87d0b521",
+  "name" : "test_add_group_v[None: testnameY0IcVZ; testheaderT47Y ZKzY53 UEgz; testfooterYwk7Vsid]",
+  "title" : "Test add group v [None: testnameY0IcVZ; testheaderT47Y ZKzY53 UEgz; testfooterYwk7Vsid]",
+  "time" : {
+    "start" : 1537567527660,
+    "stop" : 1537567530715,
+    "duration" : 3055
+  },
+  "summary" : {
+    "attachments" : 0,
+    "steps" : 3
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "suite" : {
+    "uid" : "8056bfa3731a2470",
+    "name" : "tests.test_add_group",
+    "title" : "Test add group"
+  },
+  "steps" : [ {
+    "name" : "Given a group list",
+    "title" : "Given a group list",
+    "time" : {
+      "start" : 1537567527710,
+      "stop" : 1537567527714,
+      "duration" : 4
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ ],
+    "steps" : [ ]
+  }, {
+    "name" : "When I add a group None: testnameY0IcVZ; testheaderT47Y ZKzY53 UEgz; testfooterYwk7Vsid the list",
+    "title" : "When I add a group None: testnameY0IcVZ; testheaderT47Y ZKzY53 UEgz; testfooterYwk7Vsid the list",
+    "time" : {
+      "start" : 1537567527714,
+      "stop" : 1537567530710,
+      "duration" : 2996
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ ],
+    "steps" : [ ]
+  }, {
+    "name" : "Then the new group list is equal to the old list with the added group",
+    "title" : "Then the new group list is equal to the old list with the added group",
+    "time" : {
+      "start" : 1537567530710,
+      "stop" : 1537567530715,
+      "duration" : 5
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "thread",
+    "value" : "11460-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "suite-name",
+    "value" : "tests.test_add_group"
+  }, {
+    "name" : "suite-title",
+    "value" : null
+  }, {
+    "name" : "severity",
+    "value" : "normal"
+  }, {
+    "name" : "host",
+    "value" : "XD"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  } ],
+  "parameters" : [ ]
+}
